@@ -1,5 +1,6 @@
-.appTitle {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+.container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 18px;
+    padding-bottom: 24px;
   }

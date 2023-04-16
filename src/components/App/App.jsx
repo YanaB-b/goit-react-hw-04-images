@@ -63,7 +63,7 @@ export const App = () => {
   };
 
   return (
-    <div>
+    <div className={css.container}>
       <Searchbar onSubmit={handleChecked}></Searchbar>
       {status === 'idle' && (
         <h2 className={css.appTitle}>Please enter your search query</h2>
