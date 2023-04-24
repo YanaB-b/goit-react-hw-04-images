@@ -16,6 +16,8 @@ export const App = () => {
   const [status, setStatus] = useState('idle');
   const [error, setError] = useState(null);
 
+ 
+
   // componentDidUpdate(prevProps, prevState) {
   //   if (
   //     prevState.nameValue !== this.state.nameValue ||
@@ -72,7 +74,7 @@ export const App = () => {
       {status === 'pending' && <Loader />}
       {status === 'rejected' && (
         <h2 className={css.appTitle}>
-          Oops, something went wrong. Please try again later.
+         {error.message}
         </h2>
       )}
 
