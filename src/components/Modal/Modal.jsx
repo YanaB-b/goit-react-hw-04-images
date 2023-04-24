@@ -20,15 +20,13 @@ const Modal = ({ onClose, selectedImage }) => {
     }
   };
 
-  {
-    return (
-      <div className={css.overlay} onClick={handleChange}>
-        <div className={css.modal}>
-          <img src={selectedImage} alt="" />
-        </div>
+  return (
+    <div className={css.overlay} onClick={handleChange}>
+      <div className={css.modal}>
+        <img src={selectedImage} alt="" />
       </div>
-    );
-  }
+    </div>
+  );
 };
 Modal.propTypes = {
   onClick: PropTypes.func.isRequired,
