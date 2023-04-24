@@ -1,5 +1,5 @@
 import css from './ImageGalleryItem.module.css';
-import { Component } from 'react';
+
 
 const  ImageGalleryItem =({ webformatURL, largeImageURL, tags, onSelect })=>{
  const onClick = () => {

@@ -46,7 +46,8 @@ export const App = () => {
   const handleChecked = nameValue => {
     setNameValue(nameValue);
 
-    images([]); setCurrentPage(1);
+    images([]);
+    setCurrentPage(1);
     setStatus('pending');
   };
   const toggleModal = () => {
@@ -74,20 +75,21 @@ export const App = () => {
           Oops, something went wrong. Please try again later.
         </h2>
       )}
-     
-        <>
-          {images.length > 0 && (
-            <>
-              <ImageGallery images={images} onSelect={onSelect} />
-              {loadMore && ( <Button onClick={handleOpen}>Load more</Button>)
-            }            </>)}
+
+      <>
+        {images.length > 0 && (
+          <>
+            <ImageGallery images={images} onSelect={onSelect} />
+            {loadMore && <Button onClick={handleOpen}>Load more</Button>}{' '}
+          </>
+        )}
         {images.length === 0 && status === 'resolved' && (
-            <h2 className={css.appTitle}>
-              Nothing was found. Please try another search.
-            </h2>
-          )}
-        </>
-    
+          <h2 className={css.appTitle}>
+            Nothing was found. Please try another search.
+          </h2>
+        )}
+      </>
+
       {isShowModal && (
         <Modal onClose={toggleModal} selectedImage={selectedImage}></Modal>
       )}
