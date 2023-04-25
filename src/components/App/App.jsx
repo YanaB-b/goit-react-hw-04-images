@@ -48,7 +48,7 @@ export const App = () => {
   const handleChecked = nameValue => {
     setNameValue(nameValue);
 
-    images([]);
+    setImages([]);
     setCurrentPage(1);
     setStatus('pending');
   };
@@ -82,7 +82,7 @@ export const App = () => {
         {images.length > 0 && (
           <>
             <ImageGallery images={images} onSelect={onSelect} />
-            {loadMore && <Button onClick={handleOpen}>Load more</Button>}{' '}
+            {loadMore && <Button onClick={handleOpen}>Load more</Button>}
           </>
         )}
         {images.length === 0 && status === 'resolved' && (
