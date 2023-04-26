@@ -15,8 +15,7 @@ export const App = () => {
   const [loadMore, setLoadMore] = useState(false);
   const [status, setStatus] = useState('idle');
   const [error, setError] = useState(null);
-
- 
+  const [isLoading, setIsLoading] = useState(false);
 
   // componentDidUpdate(prevProps, prevState) {
   //   if (
@@ -28,6 +27,7 @@ export const App = () => {
   // }
   useEffect(() => {
     const onImages = () => {
+      setIsLoading(true)
       getImages(nameValue, currentPage)
         .then(images => {
           setImages(prevImages => [...prevImages, ...images.hits]);
@@ -37,6 +37,10 @@ export const App = () => {
         .catch(error => {
           setError(error);
           setStatus('rejected');
+        })
+        .finally(() => {
+          setIsLoading(false);
+          
         });
     };
     if (nameValue === '') {
@@ -71,18 +75,20 @@ export const App = () => {
       {status === 'idle' && (
         <h2 className={css.appTitle}>Please enter your search query</h2>
       )}
-      {status === 'pending' && <Loader />}
+     
+      
+
       {status === 'rejected' && (
-        <h2 className={css.appTitle}>
-         {error.message}
-        </h2>
+        <h2 className={css.appTitle}>{error.message}</h2>
       )}
 
       <>
-        {images.length > 0 && (
+        {images.length > 0 &&   (
           <>
             <ImageGallery images={images} onSelect={onSelect} />
-            {loadMore && <Button onClick={handleOpen}>Load more</Button>}
+            {loadMore  && !isLoading && <Button onClick={handleOpen}>Load more</Button>}
+     
+
           </>
         )}
         {images.length === 0 && status === 'resolved' && (
@@ -91,7 +97,7 @@ export const App = () => {
           </h2>
         )}
       </>
-
+      {isLoading && <Loader />}
       {isShowModal && (
         <Modal onClose={toggleModal} selectedImage={selectedImage}></Modal>
       )}
